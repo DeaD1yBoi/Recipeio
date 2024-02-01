@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
+
+/* START: General styles */
+.max-width {
+  @apply mx-auto;
+}
+
+.padding-x {
+  @apply sm:px-12 px-4;
+}
+
+.padding-y {
+  @apply py-3;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.custom-btn {
+  @apply flex flex-row relative justify-center items-center py-3 px-6 outline-none;
+}
+/* END: General styles */
+
+/* START: Hero styles */
+.hero {
+  @apply flex xl:flex-row flex-col gap-5 relative z-0;
+}
+
+.hero__title {
+  @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
+}
+
+.hero__subtitle {
+  @apply text-[27px] text-black-100 font-light mt-5;
+}
+
+.hero__image-container {
+  @apply xl:flex-[1.5] flex justify-end items-end w-full xl:h-screen;
+}
+
+.hero__image {
+  @apply relative xl:w-full w-[90%] xl:h-full h-[590px] z-0;
+}
+
+.hero__image-overlay {
+  @apply absolute xl:-top-24 xl:-right-1/2 -right-1/4 bg-repeat-round -z-10 w-full xl:h-screen h-[590px] overflow-hidden;
+}
+/* END: Hero styles */
+
+/* START: Home styles */
+
+.home__text-container {
+  @apply flex flex-col gap-y-2.5 text-black-100;
+}
+
+.home__filters {
+  @apply mt-12 w-full flex-between items-center flex-wrap gap-5;
+}
+
+.home__filter-container {
+  @apply flex justify-start flex-wrap items-center gap-2;
+}
+
+.home__recipe-wrapper {
+  @apply flex justify-start flex-wrap w-full gap-4 pt-5;
+}
+
+.home__error-container {
+  @apply mt-16 flex justify-center items-center flex-col gap-2;
+}
+/* END: Home styles */
+
+/* START: Recipe Card styles */
+.recipe-card {
+  @apply mb-4 duration-slow flex flex-col p-3 items-start bg-gray-200 hover:scale-105 hover:shadow-xl rounded-3xl;
+}
+
+.recipe-card__content {
+  @apply w-full flex justify-between items-start gap-1;
+}
+
+.recipe-card__content-title {
+  @apply text-[22px] leading-[26px] font-bold capitalize;
+}
+
+.recipe-card__price {
+  @apply flex mt-6 text-[32px] leading-[38px] font-extrabold;
+}
+
+.recipe-card__price-dollar {
+  @apply self-start text-[14px] leading-[17px] font-semibold;
+}
+
+.recipe-card__price-day {
+  @apply self-end text-[14px] leading-[17px] font-medium;
+}
+
+.recipe-card__image {
+  @apply relative w-full h-40 my-3 object-contain;
+}
+
+.recipe-card__icon-container {
+  @apply flex group-hover:invisible w-full justify-between text-grey;
+}
+
+.recipe-card__icon {
+  @apply flex flex-col justify-center items-center gap-2;
+}
+
+.recipe-card__icon-text {
+  @apply text-[14px] leading-[17px];
+}
+
+/* END: Recipe Card styles */
+
+/* START: Recipe Details styles */
+.recipe-details__dialog-panel {
+  @apply relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5;
+}
+
+.recipe-details__close-btn {
+  @apply absolute top-2 right-2 z-10 w-fit p-2 bg-primary-blue-100 rounded-full;
+}
+
+.recipe-details__main-image {
+  @apply relative w-full h-40 bg-cover bg-center rounded-lg;
+}
+/* END: Recipe Details styles */
+
+/* START: Custom Filter styles */
+.custom-filter__btn {
+  @apply relative w-full min-w-[127px] flex justify-between items-center cursor-default rounded-lg bg-white py-2 px-3 text-left shadow-md sm:text-sm border;
+}
+
+.custom-filter__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+/* END: Custom Filter styles */
+
+/* START: Footer styles */
+.footer {
+  @apply flex flex-col text-black-100  mt-5 border-t border-gray-100;
+}
+
+.footer__links-container {
+  @apply flex max-md:flex-col flex-wrap justify-between gap-5 sm:px-16 px-6 py-10;
+}
+
+.footer__rights {
+  @apply flex flex-col justify-start items-start gap-6;
+}
+
+.footer__links {
+  @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+}
+
+.footer__link {
+  @apply flex flex-col gap-6 text-base min-w-[170px];
+}
+
+.footer__copyrights {
+  @apply flex justify-between items-center flex-wrap mt-10 border-t border-gray-100 sm:px-16 px-6 py-10;
+}
+
+.footer__copyrights-link {
+  @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+}
+/* END: Footer styles */
+
+/* START: searchbar styles */
+.searchbar {
+  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+}
+
+.searchbar__item {
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative mx-2;
+}
+
+.searchbar__input {
+  @apply w-full h-[48px] border-b-2 border-gray-300 pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+/* END: searchbar styles */
+
+/* START: search ingredients styles */
+.search-ingredients {
+  @apply flex-1 max-sm:w-full flex justify-start items-center;
+}
+
+.search-ingredients__input {
+  @apply w-full h-[48px] pl-12 p-4 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-sm;
+}
+
+.search-ingredients__options {
+  @apply absolute z-10 rounded-xl bg-gray-200 max-h-60 w-full overflow-auto text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.search-ingredients__option {
+  @apply cursor-default select-none py-2 pl-10 pr-4  rounded-xl border-b border-gray-400;
+}
+/* END: search ingredients styles */
+.logo_text {
+  @apply max-sm:hidden font-semibold text-lg text-black tracking-wide;
+}
+.blue_btn {
+  @apply rounded-full border border-gray-100 bg-primary-blue py-1.5 px-5 text-white transition-all text-center text-sm font-inter flex items-center justify-center hover:scale-105;
+}
+.dropdown {
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+.dropdown_link {
+  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-bold;
+}
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+.form_input {
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+.form_nametextarea {
+  @apply flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0 w-full;
+}
+.flex-end {
+  @apply flex justify-end items-center;
+}
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+.app {
+  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+}
+.orange_button {
+  @apply rounded-full border bg-orange-500 py-1.5 px-5 transition-all text-center text-sm font-inter flex items-center justify-center hover:scale-105;
+}
+.green_button {
+  @apply rounded-full border bg-green-500 py-1.5 px-5 transition-all text-center text-sm font-inter flex items-center justify-center hover:scale-105;
+}
+.time_Text{
+  @apply text-lg font-semibold
+}
