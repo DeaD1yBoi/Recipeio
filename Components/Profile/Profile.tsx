@@ -1,21 +1,50 @@
 "use client";
 import React from "react";
 import useProfileHooks from "./hooks";
-import { RecipeCard } from "..";
-
+import { CustomButton, RecipeCard } from "..";
 
 const Profile = () => {
-  const { userRecipes, handleEdit, handleDelete, session, userId, userName } =
-    useProfileHooks();
+  const {
+    handleEdit,
+    handleDelete,
+    session,
+    userId,
+    userName,
+    createdRecipes,
+    setCreatedRecipes,
+    recipesToShow,
+  } = useProfileHooks();
 
   return (
     <section className="w-full p-3">
       <h1 className="head_text text-left">
-        <span className="blue_gradient">{session?.user?.id === userId || !userId ? "My" : `${userName}\'s`} Profile</span>
+        <span className="blue_gradient capitalize">
+          {session?.user?.id === userId || !userId ? "My" : `${userName}\'s`}{" "}
+          Profile
+        </span>
       </h1>
-      <h2 className="desc text-left max-w-md mb-3">Created recepies:</h2>
+      <span className="flex flex-row my-2 items-end gap-2">
+        <CustomButton
+          title="Created"
+          noDefaultStyles
+          handleClick={() => setCreatedRecipes(true)}
+          containerStyles={`text-2xl underline ${
+            createdRecipes ? "font-semibold" : "font-normal"
+          }`}
+        />
+        <p className="text-3xl">/</p>
+        <CustomButton
+          title="Saved"
+          noDefaultStyles
+          handleClick={() => setCreatedRecipes(false)}
+          containerStyles={`text-2xl underline ${
+            !createdRecipes ? "font-semibold" : "font-normal"
+          }`}
+        />
+        <p className="text-2xl">Recipes</p>
+      </span>
       <div className="home__recipe-wrapper p-10">
-        {userRecipes.map((recipe) => (
+        {recipesToShow.map((recipe) => (
           <RecipeCard
             key={recipe._id.toString()}
             recipe={recipe}

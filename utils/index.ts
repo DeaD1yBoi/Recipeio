@@ -112,3 +112,16 @@ export const timeTextColor = (timeNeeded: number) => (
   timeNeeded <= 360 ? "text-amber-600" :
   timeNeeded <= 480 ? "text-red-400" : "text-red-600"
 );
+
+export const toBase64 = (file: File) => {
+  return new Promise((response, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      response(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};

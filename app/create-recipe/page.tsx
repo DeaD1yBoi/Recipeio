@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import React from "react";
 import { useState } from "react";
 import { ExtendedSession } from "@/types";
+import { toBase64 } from "@/utils";
 
 const CreateRecipe = () => {
   const router = useRouter();
@@ -18,26 +19,11 @@ const CreateRecipe = () => {
     timeNeeded: 30,
     image: null as File | null,
   });
-  const toBase64 = (file: File) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
 
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
   const createRecipe = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const base64 = await toBase64(post.image as File);
-
+    const base64 = await toBase64(post.image as File)
     try {
       const response = await fetch("/api/recipe/new", {
         method: "POST",

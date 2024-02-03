@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   },
   savedPosts:{
     type: [Schema.Types.ObjectId],
-    ref: "Post"
+    ref: "Recipe"
   }
 });
 

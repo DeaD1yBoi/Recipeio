@@ -3,6 +3,11 @@ import GoogleProvider from "next-auth/providers/google";
 import { connectToDB } from "@/utils/database";
 import User from "@/models/user";
 import { ExtendedSession } from "@/types";
+import { Profile } from "next-auth";
+
+interface ProfileProps extends Profile {
+  picture: string;
+}
 
 const handler = NextAuth({
   providers: [
@@ -22,7 +27,8 @@ const handler = NextAuth({
       }
       return session;
     },
-    async signIn({ profile }) {
+    async signIn({profile}) {
+      const profileWithPicture : ProfileProps = profile as ProfileProps
       try {
         await connectToDB();
         const userExist = await User.findOne({
@@ -32,7 +38,7 @@ const handler = NextAuth({
           await User.create({
             email: profile?.email,
             username: profile?.name?.replace(" ", "").toLowerCase(),
-            image: profile?.image,
+            image: profileWithPicture?.picture,
             savedPosts: [],
           });
         }

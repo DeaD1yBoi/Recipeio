@@ -11,7 +11,7 @@ interface RecipeCardProps {
   recipe: RecipeProps;
   handleDelete?: () => void;
   handleEdit?: () => void;
-  setFilter: (values: FilterProps) => void;
+  setFilter?: (values: FilterProps) => void;
 }
 
 const RecipeCard = (props: RecipeCardProps) => {
@@ -31,12 +31,12 @@ const RecipeCard = (props: RecipeCardProps) => {
         <MdBookmark size={25} className='cursor-pointer' onClick={()=>updateSavedRecipes(_id, 'ADD')}/>
         }
       </div>
-      <div className="relative w-full h-40 my-3 object-contain flex justify-center items-center rounded-md">
+      <div className="relative h-fit w-full h-40 my-3 object-contain flex justify-center items-center rounded-md">
         <Image
           src={image || "/placeholder.png"}
           alt="Food placeholder"
-          width={180}
-          height={180}
+          width={160}
+          height={160}
           priority
           className="object-contain rounded-lg"
         />
@@ -62,7 +62,7 @@ const RecipeCard = (props: RecipeCardProps) => {
         </p>
         min.
       </span>
-      <p className="flex font-extrabold flex-col">
+      <div className="flex font-extrabold flex-col">
         <span className="self-start text-[14px] font-semibold mb-4">
           {ingredients.slice(0, 3).map((ingredient, index) => (
             <p className="mr-1" key={index}>
@@ -84,7 +84,7 @@ const RecipeCard = (props: RecipeCardProps) => {
             </p>
           ))}
         </span>
-      </p>
+      </div>
       <div className="w-full mt-auto">
         <CustomButton
           title="View More"

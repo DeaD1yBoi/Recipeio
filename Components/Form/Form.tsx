@@ -34,7 +34,7 @@ const Form = (props: FormProps) => {
         </label>
         <label>
           <span className="font-semibold text-base text-grey-700">Image:</span>
-          <p className="text-sm text-neutral-600">Enter image URL using prnt.sc (LightShot)</p>
+          <p className="text-sm text-neutral-600">Upload the final image of your recipe done</p>
           <input
           type="file"
           accept='image/*'

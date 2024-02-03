@@ -11,6 +11,7 @@ export interface CustomButtonProps {
   disable?: boolean;
   textStyles?: string;
   isDisabled?: boolean;
+  noDefaultStyles?: boolean
 }
 
 export interface SearchNameProps {

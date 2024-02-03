@@ -3,6 +3,7 @@ import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
 import { NextApiRequest } from "next";
 
+
 export const GET = async (req: NextApiRequest,  {params} : getProps) => {
   try {
     await connectToDB();
@@ -16,9 +17,10 @@ export const GET = async (req: NextApiRequest,  {params} : getProps) => {
 
 export const PATCH = async (req: Request, { params }: getProps) => {
   const { nameStr, ingredients, tags, image, timeNeeded, recipeInst } = await req.json();
+
   try {
     await connectToDB();
-    const exsistingRecipe = await Recipe.findById(params.id);
+    const exsistingRecipe  = await Recipe.findById(params.id);
     if (!exsistingRecipe)
       return new Response("Recipe not found", { status: 404 });
 
@@ -30,7 +32,9 @@ export const PATCH = async (req: Request, { params }: getProps) => {
     exsistingRecipe.recipeInst = recipeInst;
     await exsistingRecipe.save();
     return new Response(JSON.stringify(exsistingRecipe), { status: 200 });
-  } catch (error) {}
+  } catch (error) {
+    return new Response(`Failed to update recipe. Error: ${error}`, { status: 500 });
+  }
 };
 
 export const DELETE = async (req: Request, { params }: getProps) => {

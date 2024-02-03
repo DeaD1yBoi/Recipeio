@@ -1,3 +1,4 @@
+import { toBase64 } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -35,6 +36,8 @@ const useUpdateRecipeHooks = () => {
   const updateRecipe = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    const base64 = await toBase64(post.image as File)
+
     if(!recipeId) return alert('Recipe ID not found');
     try {
       const response = await fetch(`/api/recipe/${recipeId}`, {
@@ -45,7 +48,7 @@ const useUpdateRecipeHooks = () => {
           recipeInst: post.recipeInst,
           tags: post.tags,
           timeNeeded: post.timeNeeded,
-          image: post.image
+          image: base64
         }),
       });
       if (response.ok) {

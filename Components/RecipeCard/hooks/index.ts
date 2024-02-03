@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Props {
-  setFilter: (values: FilterProps) => void;
+  setFilter?: (values: FilterProps) => void;
 }
 
 const useRecipeCardHooks = (props: Props) => {
@@ -17,6 +17,7 @@ const useRecipeCardHooks = (props: Props) => {
   const [userSaved, setUserSaved] = useState<ObjectId[]>([]);
 
   const tagSearch = (tag: string) => {
+    setFilter &&
     updateSearchParams({
       name: "",
       ing: "",

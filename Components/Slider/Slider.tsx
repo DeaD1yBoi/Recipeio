@@ -38,7 +38,7 @@ export default function InputSlider(props: UseStatePostProps) {
             value={post.timeNeeded}
             size="small"
             onChange={handleInputChange}
-            className={`${timeTextColor(post.timeNeeded)}`}
+            className={`${timeTextColor(post.timeNeeded)} text-xl font-semibold`}
             onBlur={handleBlur}
             inputProps={{
               step: 10,

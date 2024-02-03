@@ -1,7 +1,7 @@
 import User from "@/models/user";
 import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
-import { ObjectId, Types } from "mongoose";
+import { Types } from "mongoose";
 
 export const GET = async (
   req: Request,

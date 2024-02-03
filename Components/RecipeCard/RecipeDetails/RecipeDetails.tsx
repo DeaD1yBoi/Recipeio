@@ -101,7 +101,7 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     <Link href={`/profile?id=${recipe.creator._id}`}>
                       <div className="bg-gray-200 cursor-pointer p-2 rounded-lg flex flex-row">
                         <Image
-                          src={recipe.creator.image}
+                          src={recipe.creator.image || 'https://via.placeholder.com/40'}
                           alt="user_image"
                           width={40}
                           height={40}
