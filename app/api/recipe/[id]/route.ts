@@ -27,7 +27,7 @@ export const PATCH = async (req: Request, { params }: getProps) => {
     exsistingRecipe.name = nameStr;
     exsistingRecipe.ingredients = ingredients;
     exsistingRecipe.tags = tags;
-    exsistingRecipe.image = image;
+    exsistingRecipe.image = image? image: exsistingRecipe.image;
     exsistingRecipe.timeNeeded = timeNeeded;
     exsistingRecipe.recipeInst = recipeInst;
     await exsistingRecipe.save();

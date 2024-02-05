@@ -11,6 +11,8 @@ export const GET = async (req: NextApiRequest) => {
   let limitNum
   if(limitSt)     limitNum = parseInt(limitSt)
   const query: any = {};
+console.log(ingredients);
+
 
   if (name) {
     query.name = { $regex: name, $options: "i" };
@@ -18,8 +20,9 @@ export const GET = async (req: NextApiRequest) => {
 
   if (ingredients && ingredients.length > 0) {
     query.ingredients = {
-      $elemMatch: { $in: ingredients.split(',').map(ing => ing.trim().toLowerCase())},
+      $elemMatch: { $in: ingredients.split(' ').map(ing => ing.trim().toLowerCase().replace('_', ' ' )) },
     };
+
   }
   if (tag) {
     query.tags = { $regex: tag, $options: "i" };

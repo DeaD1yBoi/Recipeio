@@ -1,13 +1,9 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Slider from "@mui/material/Slider";
-import Input from "@mui/material/Input";
-import Image from "next/image";
 import useSliderHooks from "./hooks";
 import { UseStatePostProps } from "@/types";
 import { timeTextColor } from "@/utils";
+import { Box, Grid, Input, Slider, Typography } from "@mui/material";
+import Image from "next/image";
 
 
 export default function InputSlider(props: UseStatePostProps) {

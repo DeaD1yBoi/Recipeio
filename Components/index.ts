@@ -11,8 +11,9 @@ import RecipeDetails from "./RecipeCard/RecipeDetails/RecipeDetails";
 import Profile from "./Profile/Profile";
 import RecipePage from "./RecipePage/RecipePage";
 import InputSlider from "./Slider/Slider";
-import AutocompleteInput from "./AutocompleteInput/AutocompleteInput";
 import ShowMore from "./ShowMore/ShowMore";
+import AutocompleteInputArray from "./AutocompleteInput/Array/AutocompleteInputArray";
+import AutocompleteInputString from "./AutocompleteInput/String/AutocompleteInputString";
 
 export { Hero,
     CustomButton,
@@ -27,6 +28,7 @@ export { Hero,
     Profile,
     RecipePage,
     InputSlider,
-    AutocompleteInput,
-    ShowMore
+    ShowMore,
+    AutocompleteInputArray,
+    AutocompleteInputString
 };

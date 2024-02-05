@@ -7,11 +7,11 @@ const useUpdateRecipeHooks = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     nameStr: "",
-    ingredients: [''],
-    recipeInst: [''],
-    tags: [''],
+    ingredients: [""],
+    recipeInst: [""],
+    tags: [""],
     timeNeeded: 30,
-    image: null as File | null
+    image: null as File | null,
   });
   const searchParams = useSearchParams();
   const recipeId = searchParams.get("id");
@@ -27,7 +27,7 @@ const useUpdateRecipeHooks = () => {
         recipeInst: data.recipeInst,
         tags: data.tags,
         timeNeeded: data.timeNeeded,
-        image: data.image
+        image: data.image,
       });
     };
     if (recipeId) getRecipeDetails();
@@ -36,9 +36,11 @@ const useUpdateRecipeHooks = () => {
   const updateRecipe = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    const base64 = await toBase64(post.image as File)
+    console.log(post.image);
 
-    if(!recipeId) return alert('Recipe ID not found');
+    const base64 = await toBase64(post.image as File);
+
+    if (!recipeId) return alert("Recipe ID not found");
     try {
       const response = await fetch(`/api/recipe/${recipeId}`, {
         method: "PATCH",
@@ -48,7 +50,7 @@ const useUpdateRecipeHooks = () => {
           recipeInst: post.recipeInst,
           tags: post.tags,
           timeNeeded: post.timeNeeded,
-          image: base64
+          image: base64,
         }),
       });
       if (response.ok) {

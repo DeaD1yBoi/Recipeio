@@ -2,8 +2,8 @@
 import React from "react";
 import { MdClear, MdDelete, MdDone, MdEdit } from "react-icons/md";
 import useTodoHooks from "./hooks";
-import { AutocompleteInput } from "..";
 import { UseStatePostProps } from "@/types";
+import { AutocompleteInputString } from "..";
 
 interface PostType {
   ingredients: Array<string>;
@@ -44,7 +44,7 @@ const TodoList = (props: Props) => {
     editText,
     setEditText,
   } = useTodoHooks({ post, setPost, fieldToUpdate, EnterOnSpace, Numbers });
-  
+
   return (
     <div className="p-1 rounded-lg">
       <div className="space-y-2 rounded-full ">
@@ -57,7 +57,8 @@ const TodoList = (props: Props) => {
             {editingTask === index ? (
               <>
                 {AutoCompleteArr ? (
-                  <AutocompleteInput
+                  <AutocompleteInputString
+                    autocompleteId='editing-ingredient'
                     placeholder="Add new ingredient"
                     setVariable={setEditText}
                     variable={editText}
@@ -93,12 +94,12 @@ const TodoList = (props: Props) => {
 
       <div className="flex items-center justify-between p-2 rounded bg-gray-100 my-2">
         {AutoCompleteArr ? (
-          <AutocompleteInput
+          <AutocompleteInputString
+            autocompleteId="newIngredient"
             placeholder="Add new ingredient"
             setVariable={setNewItem}
             variable={newItem}
             constArr={AutoCompleteArr}
-            onKeyDown={handleKeyDown}
           />
         ) : (
           <input

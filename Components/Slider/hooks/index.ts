@@ -1,7 +1,6 @@
 import * as React from "react";
-import { useMediaQuery, useTheme } from "@mui/material";
-import { Theme } from "@mui/material/styles";
 import { UseStatePostProps } from "@/types";
+import { Theme, useMediaQuery, useTheme } from "@mui/material";
 
 
 export default function useSliderHooks(props: UseStatePostProps) {

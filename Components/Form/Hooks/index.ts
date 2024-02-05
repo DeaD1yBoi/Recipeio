@@ -8,7 +8,7 @@ export default function useFormHooks(props: UseStatePostProps) {
 
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (!e.target.files) {
-        return;
+        return ;
       }
 
       setPost({...post, image: e.target.files[0]});

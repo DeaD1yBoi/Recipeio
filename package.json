@@ -13,7 +13,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.18",
-    "@mui/material": "^5.15.4",
+    "@mui/material": "^5.15.7",
     "@types/next-auth": "^3.15.0",
     "mongoose": "^8.0.3",
     "next": "14.0.3",
@@ -21,7 +21,8 @@
     "nextjs-current-url": "^1.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^4.12.0"
+    "react-icons": "^4.12.0",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/node": "^20",

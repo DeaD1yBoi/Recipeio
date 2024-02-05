@@ -1,10 +1,10 @@
 import { FormProps } from "@/types";
-import Link from "next/link";
 import React from "react";
 import { CustomButton, InputSlider } from "..";
 import TodoComp from "../TodoComp/TodoCopm";
 import useFormHooks from "./Hooks";
 import { AllPossibleIngredients } from "@/constants";
+import Link from "next/link";
 
 const Form = (props: FormProps) => {
   const { type, post, setPost, submitting, handleSubmit } = props;

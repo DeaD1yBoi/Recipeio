@@ -15,14 +15,21 @@ interface Props extends UseStatePostProps {
 export default function useTodoHooks(props: Props) {
   const { post, setPost, fieldToUpdate, EnterOnSpace, Numbers } = props;
   const [newItem, setNewItem] = useState("");
+  const [autoCompleteList, setAutoCompleteList] = useState<string[]>([]);
+  const [editAutoCompleteList, setEditAutoCompleteList] = useState<string[]>(
+    []
+  );
   const [editingTask, setEditingTask] = useState<number | null>(null);
-  const [editText, setEditText] = useState("");
+  const [editText, setEditText] = useState('');
 
   const handleCreatePost = () => {
     if (isHaveLongWord(newItem))
       return alert("You can not use word longer than 15 characters");
     if (!newItem) return alert("You can not add empty item");
-    if (post[fieldToUpdate].includes(newItem) || post[fieldToUpdate].includes(`#${newItem}`)) {
+    if (
+      post[fieldToUpdate].includes(newItem) ||
+      post[fieldToUpdate].includes(`#${newItem}`)
+    ) {
       return alert("Item already exists. Please enter a unique item.");
     }
     setPost({
@@ -42,9 +49,12 @@ export default function useTodoHooks(props: Props) {
   const handleSaveTask = (index: number) => {
     if (fieldToUpdate !== "tags" && isHaveLongWord(editText))
       return alert("You can not use word longer than 15 characters");
-      if (post[fieldToUpdate].includes(newItem) || post[fieldToUpdate].includes(`#${newItem}`)) {
-        return alert("Item already exists. Please enter a unique item.");
-      }
+    if (
+      post[fieldToUpdate].includes(newItem) ||
+      post[fieldToUpdate].includes(`#${newItem}`)
+    ) {
+      return alert("Item already exists. Please enter a unique item.");
+    }
     setPost((prevPost) => ({
       ...prevPost,
       [fieldToUpdate]: prevPost[fieldToUpdate].map((item, i) =>
@@ -91,5 +101,9 @@ export default function useTodoHooks(props: Props) {
     Numbers,
     editText,
     setEditText,
+    autoCompleteList,
+    setAutoCompleteList,
+    editAutoCompleteList,
+    setEditAutoCompleteList,
   };
 }

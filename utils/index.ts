@@ -25,12 +25,16 @@ interface updateSearchProps {
   name: string;
   ing: string;
   setFilter: (values: FilterProps) => void;
-  setIngredients?: (values: string) => void;
+  setIngredients?: (values: string[]) => void;
   setSearchName?: (values: string) => void;
   router: AppRouterInstance;
   tag: string;
   limit: number;
 }
+
+export const transformArrayToString = (array: string[]): string => {
+  return array.map((item) => item.replace(/ /g, "_")).join(" ");
+};
 
 export const updateSearchParams = (props: updateSearchProps) => {
   const {
@@ -63,7 +67,7 @@ export const updateSearchParams = (props: updateSearchProps) => {
   const newPath = `${window.location.pathname}?${searchParams.toString()}`;
   router.push(newPath, { scroll: false });
   setFilter({ name, ingredients: ing, tag, limit });
-  if (setIngredients) setIngredients("");
+  if (setIngredients) setIngredients([]);
   if (setSearchName) setSearchName("");
 };
 
@@ -105,23 +109,32 @@ export const deleteSearchParams = (type: string) => {
   return newPathname;
 };
 
-export const timeTextColor = (timeNeeded: number) => (
-  timeNeeded <= 50 ? "text-sky-400" :
-  timeNeeded <= 120 ? "text-green-500" :
-  timeNeeded <= 240 ? "text-amber-400" :
-  timeNeeded <= 360 ? "text-amber-600" :
-  timeNeeded <= 480 ? "text-red-400" : "text-red-600"
-);
+export const timeTextColor = (timeNeeded: number) =>
+  timeNeeded <= 50
+    ? "text-sky-400"
+    : timeNeeded <= 120
+    ? "text-green-500"
+    : timeNeeded <= 240
+    ? "text-amber-400"
+    : timeNeeded <= 360
+    ? "text-amber-600"
+    : timeNeeded <= 480
+    ? "text-red-400"
+    : "text-red-600";
 
 export const toBase64 = (file: File) => {
-  return new Promise((response, reject) => {
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      response(fileReader.result);
-    };
-    fileReader.onerror = (error) => {
-      reject(error);
-    };
-  });
+  try {
+    return new Promise((response, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        response(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  } catch (error) {
+      return ''
+  }
 };
