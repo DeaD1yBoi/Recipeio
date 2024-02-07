@@ -1,5 +1,6 @@
 "use client";
 import { Autocomplete, Stack, TextField } from "@mui/material";
+import Image from "next/image";
 
 interface Props {
   variable: string[];
@@ -13,7 +14,8 @@ export default function AutocompleteInputArray(props: Props) {
   const { variable, setVariable, constArr, placeholder, autocompleteId } =
     props;
   return (
-    <Stack spacing={3} sx={{ width: 500 }}>
+    <div>
+    <Stack spacing={3} sx={{ width: 350 }} >
       <Autocomplete
         value={variable}
         onChange={(e, newValue) => {
@@ -29,11 +31,11 @@ export default function AutocompleteInputArray(props: Props) {
           <TextField
             {...params}
             variant="standard"
-            label={`${placeholder}`}
             placeholder={`${placeholder}`}
           />
         )}
       />
     </Stack>
+    </div>
   );
 }

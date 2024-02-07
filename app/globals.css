@@ -189,11 +189,11 @@
 }
 
 .searchbar__item {
-  @apply flex-1 max-sm:w-full flex justify-start items-center relative mx-2;
+  @apply flex-1 max-sm:w-full flex justify-center items-center relative mx-2;
 }
 
 .searchbar__input {
-  @apply w-full h-[48px] border-b-2 border-gray-300 pl-12 p-4 bg-light-white rounded-r-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+  @apply w-full h-[24px] outline-none cursor-pointer border-b border-gray-400 hover:border-black hover:border-b-2 transition-all duration-100 focus:border-blue-600 focus:border-b-2;
 }
 /* END: searchbar styles */
 
