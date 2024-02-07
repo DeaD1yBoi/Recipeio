@@ -2,7 +2,11 @@ import * as React from "react";
 import useSliderHooks from "./hooks";
 import { UseStatePostProps } from "@/types";
 import { timeTextColor } from "@/utils";
-import { Box, Grid, Input, Slider, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Input from "@mui/material/Input";
+import Slider from "@mui/material/Slider";
+import Typography from "@mui/material/Typography";
 import Image from "next/image";
 
 
