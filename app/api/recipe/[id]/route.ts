@@ -1,4 +1,5 @@
 import Recipe from "@/models/receipe";
+import User from "@/models/user";
 import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
 import { NextApiRequest } from "next";
@@ -41,6 +42,7 @@ export const DELETE = async (req: Request, { params }: getProps) => {
   try {
     await connectToDB();
     await Recipe.findByIdAndDelete(params.id);
+    await User.updateMany({ savedPosts: params.id }, { $pull: { savedPosts: params.id } });
     return new Response("Recipe deleted successfully", { status: 200 });
   } catch (error) {
     return new Response("Failed to delete recipe", { status: 500 });
