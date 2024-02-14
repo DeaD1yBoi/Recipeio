@@ -160,7 +160,6 @@ export const AllPossibleIngredients = [
     "deep dish pie crust",
     "deli ham",
     "dessert shells",
-    "dijon mustard",
     "dill",
     "dill pickles",
     "dijon mustard",

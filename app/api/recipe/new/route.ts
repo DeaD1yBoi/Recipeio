@@ -14,7 +14,8 @@ export const POST = async (req: Request) => {
       recipeInst: recipeInst,
       tags: tags,
       timeNeeded: timeNeeded,
-      image: image
+      image: image,
+      rating: []
     });
     await newRecipe.save();
     return new Response(JSON.stringify(newRecipe), { status: 201 });

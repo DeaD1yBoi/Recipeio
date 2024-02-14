@@ -32,7 +32,17 @@ const RecipeSchema = new Schema({
     type: String,
     required: [true, "Please upload an image file"],
   },
-
+  rating: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+      rating: {
+        type: Number,
+      },
+    },
+  ],
 });
 
 const Recipe = models.Recipe || model("Recipe", RecipeSchema);

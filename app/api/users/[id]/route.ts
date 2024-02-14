@@ -21,7 +21,7 @@ export const GET = async (
 };
 
 export const PATCH = async (req: Request, { params }: getProps) => {
-  const { postId, action } = await req.json();
+  const { postId, action, rating } = await req.json();
   try {
     await connectToDB();
     const existingUser = await User.findById(params.id);
@@ -39,12 +39,12 @@ export const PATCH = async (req: Request, { params }: getProps) => {
         (id: Types.ObjectId) => !id.equals(postId)
       );
       existingUser.savedPosts = filtered;
-    } else {
+    }  else {
       return new Response("Invalid action", { status: 400 });
     }
     await existingUser.save();
     return new Response(JSON.stringify(existingUser), { status: 200 });
   } catch (error) {
-    return new Response("Failed to save recipe", { status: 500 });
+    return new Response(`Failed to update user ${error}`, { status: 500 });
   }
 };

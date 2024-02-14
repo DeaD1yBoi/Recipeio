@@ -25,6 +25,7 @@ export default function AutocompleteInputString(props: Props) {
         options={constArr.map((option: string) => option)}
         renderInput={(params) => (
           <TextField
+            key={`${placeholder}`}
             {...params}
             label={`${placeholder}`}
             InputProps={{

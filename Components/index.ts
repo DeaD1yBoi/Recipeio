@@ -14,6 +14,7 @@ import InputSlider from "./Slider/Slider";
 import ShowMore from "./ShowMore/ShowMore";
 import AutocompleteInputArray from "./AutocompleteInput/Array/AutocompleteInputArray";
 import AutocompleteInputString from "./AutocompleteInput/String/AutocompleteInputString";
+import StarRating from "./StarRating/StarRating";
 
 export { Hero,
     CustomButton,
@@ -30,5 +31,6 @@ export { Hero,
     InputSlider,
     ShowMore,
     AutocompleteInputArray,
-    AutocompleteInputString
+    AutocompleteInputString,
+    StarRating
 };

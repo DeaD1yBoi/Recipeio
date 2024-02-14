@@ -3,9 +3,10 @@ import React from "react";
 import useRecipePageHooks from "./hooks";
 import Image from "next/image";
 import Link from "next/link";
+import { StarRating } from "..";
 
 const RecipePage = () => {
-  const { recipe } = useRecipePageHooks();
+  const { recipe, userRatePost, rating, userRated } = useRecipePageHooks();
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-5xl font-semibold mb-4">
@@ -39,6 +40,10 @@ const RecipePage = () => {
           </p>
         </div>
       </Link>
+        <div className="my-4">
+          <h1 className="text-3xl font-semibold">Rate this recipe</h1>
+          <StarRating userRated={userRated} rating={rating} userRatePost={userRatePost} size={40} textStyle="text-2xl" ratingStyle="text-3xl font-bold"/>
+        </div>
       <div className="mb-4">
         <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>
         <ul className="list-disc pl-4">
@@ -50,9 +55,9 @@ const RecipePage = () => {
         </ul>
       </div>
       <div className="mb-4 space-y-4">
-        <h3 className="text-2xl font-semibold mb-2">Recipe Instructions:</h3>
+        <h3 className="text-2xl font-semibold">Recipe Instructions:</h3>
           {recipe?.recipeInst.map((instruction, index) => (
-            <div>
+            <div key={index}>
               <span className="text-2xl">{`${index + 1}. `}</span>
             <span className="text-xl justify-evenly">
               {instruction || "Instruction Placeholder"}

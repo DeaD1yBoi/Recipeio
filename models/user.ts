@@ -20,7 +20,7 @@ const UserSchema = new Schema({
   savedPosts:{
     type: [Schema.Types.ObjectId],
     ref: "Recipe"
-  }
+  },
 });
 
 const User = models.User || model("User", UserSchema);
