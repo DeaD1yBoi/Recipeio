@@ -3,6 +3,10 @@ import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
 import { Types } from "mongoose";
 
+interface RatingItem {
+  user: Types.ObjectId;
+  rating: number;
+}
 
 export const PATCH = async (req: Request, { params }: getProps) => {
   const { userId, rating } = await req.json();
@@ -31,17 +35,26 @@ export const PATCH = async (req: Request, { params }: getProps) => {
 
 export const GET = async (req: Request, { params }: getProps) => {
   const { searchParams } = new URL(req.url!);
- const userId = searchParams.get("userId");
- console.log('route userId',{userId});
+  const userId = searchParams.get("userId");
 
   try {
     await connectToDB();
     const recipe = await Recipe.findById(params.id);
+
     if (!recipe) return new Response("Recipe not found", { status: 404 });
-    const userRate = recipe.rating.filter((rate: { user: Types.ObjectId }) =>
+
+    const { rating } = recipe;
+    const userRate = rating.filter((rate: RatingItem) =>
       rate.user.equals(userId)
     );
-    return new Response(JSON.stringify({userRate}), { status: 200 });
+
+    return new Response(
+      JSON.stringify({
+        userRate: userRate[0]?.rating,
+        rating: rating.map((item: RatingItem) => item.rating),
+      }),
+      { status: 200 }
+    );
   } catch (error) {
     return new Response(`Failed to fetch recipe. Error: ${error}`, {
       status: 500,

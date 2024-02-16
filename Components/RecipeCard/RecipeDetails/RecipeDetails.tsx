@@ -6,9 +6,10 @@ import Link from "next/link";
 import useRecipeDetailsHooks from "./hooks";
 import { RecipeDetailsProps } from "@/types";
 import { timeTextColor } from "@/utils";
+import RatingStars from "@/Components/RatingStars/RatingStars";
 
 const RecipeDetails = (props: RecipeDetailsProps) => {
-  const { isOpen, tagSearch, closeModal, recipe, handleEdit, handleDelete } =
+  const { isOpen, tagSearch, closeModal, recipe, handleEdit, handleDelete, rating } =
     props;
   const { pathName, session } = useRecipeDetailsHooks();
   return (
@@ -39,7 +40,7 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
               >
                 <Dialog.Panel
                   className={
-                    "relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5"
+                    "relative  w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5"
                   }
                 >
                   <button
@@ -55,11 +56,11 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                       className="object-contain"
                     />
                   </button>
-                  <div className="flex-1 flex flex-col gap-3">
+                  <div className="flex-1 flex flex-col gap-3 ">
                     <h2 className="font-semibold text-xl capitalize">
                       {recipe.name}
                     </h2>
-                    <div className="relative w-full rounded-lg">
+                    <div className="relative w-full rounded-lg ">
                       <Image
                         src={recipe.image || "/food-placeholder.png"}
                         alt="Food placeholder"
@@ -69,6 +70,9 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                         className="object-contain rounded-md"
                       />
                     </div>
+                  </div>
+                  <div className="pt-2 items-end border-t w-full border-gray-400">
+                  <RatingStars rating={rating} size={30} />
                   </div>
                   <span className={`text-md flex flex-row items-center`}>
                     This recipe takes:

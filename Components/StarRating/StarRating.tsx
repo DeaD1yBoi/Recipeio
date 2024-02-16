@@ -9,10 +9,11 @@ interface Props {
   userRatePost: ({ rating }: { rating: number }) => void;
   userRated: number | null;
   ratingStyle?: string;
+  justRated?: boolean;
 }
 
 const StarRating = (props: Props) => {
-  const { size = 20, textStyle, userRatePost, rating, userRated, ratingStyle = 'font-bold' } = props;
+  const { size = 20, textStyle, userRatePost, rating, userRated, ratingStyle = 'font-bold', justRated } = props;
   const { setHover, color } = useStarRatingHooks({ userRated });
 
   return (
@@ -22,6 +23,7 @@ const StarRating = (props: Props) => {
         return (
           <label key={index} className="flex items-center">
             <input
+            disabled={justRated}
               className="hidden"
               type="radio"
               name="rating"
@@ -37,9 +39,9 @@ const StarRating = (props: Props) => {
           </label>
         );
       })}
-      {userRated && (
-        <span className={`mt-1 w-full flex flew-row items-end ${textStyle}`}>
-          {" "}
+      { justRated ? ( <span className={`transition ease-in-out mt-1 w-full flex flew-row items-end text-red-500 ${textStyle}`}>Thanks for your feedback!</span> )
+      :userRated && (
+        <span className={`transition ease-in-out mt-1 w-full flex flew-row items-end ${textStyle}`}>
           You rated this post:
           <p className={`ml-1 ${ratingStyle}`}>{userRated}</p>
         </span>

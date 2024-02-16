@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { FilterProps, RecipeProps } from "@/types";
 import CustomButton from "../CustomButton/CustomButton";
-import { RecipeDetails } from "..";
+import { RatingStars, RecipeDetails } from "..";
 import useRecipeCardHooks from "./hooks";
 import { MdBookmark } from "react-icons/md";
 
@@ -17,8 +17,8 @@ interface RecipeCardProps {
 const RecipeCard = (props: RecipeCardProps) => {
   const { recipe, handleDelete, handleEdit, setFilter } = props;
   const { name, ingredients, tags, image, timeNeeded, _id } = recipe;
-  const { isOpen, setIsOpen, tagSearch, updateSavedRecipes, userSaved } = useRecipeCardHooks({
-    setFilter,
+  const { isOpen, setIsOpen, tagSearch, updateSavedRecipes, userSaved, rating } = useRecipeCardHooks({
+    setFilter, recipe
   });
 
   return (
@@ -31,7 +31,7 @@ const RecipeCard = (props: RecipeCardProps) => {
         <MdBookmark size={25} className='cursor-pointer' onClick={()=>updateSavedRecipes(_id, 'ADD')}/>
         }
       </div>
-      <div className="relative h-fit w-full h-40 my-3 object-contain flex justify-center items-center rounded-md">
+      <div className="relative h-fit w-full my-3 object-contain flex justify-center items-center rounded-md">
         <Image
           src={image || "/placeholder.png"}
           alt="Food placeholder"
@@ -40,6 +40,10 @@ const RecipeCard = (props: RecipeCardProps) => {
           priority
           className="object-contain rounded-lg"
         />
+      </div>
+      <div className="py-2 border-t border-gray-400 w-full">
+
+      <RatingStars rating={rating}/>
       </div>
       <span className={`text-md flex flex-row items-center`}>
         This recipe takes:
@@ -93,6 +97,7 @@ const RecipeCard = (props: RecipeCardProps) => {
         />
       </div>
       <RecipeDetails
+        rating={rating}
         tagSearch={tagSearch}
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}

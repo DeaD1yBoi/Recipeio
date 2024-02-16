@@ -1,5 +1,23 @@
-import { FilterProps } from "@/types";
+import { ExtendedSession, FilterProps } from "@/types";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
+interface fetchRatingProps {
+  id: string | null;
+  session: ExtendedSession | null;
+  setRating?: (values: number) => void;
+  setUserRated?: (values: number | null) => void;
+}
+
+interface updateSearchProps {
+  name: string;
+  ing: string;
+  setFilter: (values: FilterProps) => void;
+  setIngredients?: (values: string[]) => void;
+  setSearchName?: (values: string) => void;
+  router: AppRouterInstance;
+  tag: string;
+  limit: number;
+}
 
 export function processTags(tagString: string): string[] {
   const tagsArray = tagString.split(/[,\s]+/).map((tag) => tag.trim());
@@ -20,17 +38,6 @@ export const fetchRecipes = async (filter: FilterProps) => {
   const data = await response.json();
   return data;
 };
-
-interface updateSearchProps {
-  name: string;
-  ing: string;
-  setFilter: (values: FilterProps) => void;
-  setIngredients?: (values: string[]) => void;
-  setSearchName?: (values: string) => void;
-  router: AppRouterInstance;
-  tag: string;
-  limit: number;
-}
 
 export const transformArrayToString = (array: string[]): string => {
   return array.map((item) => item.replace(/ /g, "_")).join(" ");
@@ -135,6 +142,23 @@ export const toBase64 = (file: File) => {
       };
     });
   } catch (error) {
-      return ''
+    return "";
   }
+};
+
+export const calculateAverageRating = (ratings: [number]) =>
+  ratings.length
+    ? (
+        ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+      ).toFixed(1)
+    : 0;
+
+export const fetchRating = async (props: fetchRatingProps) => {
+  const { id, session, setRating, setUserRated } = props;
+  const response = await fetch(
+    `/api/recipe/${id}/rate?userId=${session?.user?.id}`
+  );
+  const data = await response.json();
+  setRating && setRating(Number(calculateAverageRating(data.rating)));
+  setUserRated && setUserRated(data.userRate);
 };

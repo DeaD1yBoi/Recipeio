@@ -78,6 +78,7 @@ export interface RecipeProps {
 
 
 export interface RecipeDetailsProps {
+  rating: number;
   isOpen: boolean;
   closeModal: () => void;
   recipe: RecipeProps;

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { StarRating } from "..";
 
 const RecipePage = () => {
-  const { recipe, userRatePost, rating, userRated } = useRecipePageHooks();
+  const { recipe, userRatePost, rating, userRated, justRated } = useRecipePageHooks();
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-5xl font-semibold mb-4">
@@ -41,8 +41,9 @@ const RecipePage = () => {
         </div>
       </Link>
         <div className="my-4">
-          <h1 className="text-3xl font-semibold">Rate this recipe</h1>
-          <StarRating userRated={userRated} rating={rating} userRatePost={userRatePost} size={40} textStyle="text-2xl" ratingStyle="text-3xl font-bold"/>
+          <h1 className="font-semibold flex flex-row items-end">Rating of this recipe: <p className={` font-bold text-xl ${rating < 3 ? "text-red-500" : "text-green-500"}`}>{rating}</p></h1>
+          <h1 className="text-xl font-semibold">Rate this recipe</h1>
+          <StarRating justRated={justRated} userRated={userRated} rating={rating} userRatePost={userRatePost} size={25} textStyle="text-xl" ratingStyle="text-xl font-bold"/>
         </div>
       <div className="mb-4">
         <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>

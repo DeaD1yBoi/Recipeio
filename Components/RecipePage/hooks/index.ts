@@ -1,26 +1,23 @@
 import { ExtendedSession, RecipeProps } from "@/types";
+import { calculateAverageRating, fetchRating } from "@/utils";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useRecipePageHooks() {
   const searchParams = useSearchParams();
   const [recipe, setRecipe] = useState<RecipeProps | null>(null);
   const id = searchParams.get("id");
-  const [rating, setRating] = useState<number | null>(null);
+  const [rating, setRating] = useState<number>(0);
   const [userRated, setUserRated] = useState<number | null>(null);
-
+  const [justRated, setJustRated] = useState(false);
 
   const { data: session }: { data: ExtendedSession | null } = useSession();
-  const fetchRating = async () => {
-    const userId = session?.user?.id;
-    const response = await fetch(`/api/recipe/${id}/rate?userId=${userId}`);
-    const data = await response.json();
-    setUserRated(data.userRate[0]?.rating);
-  };
+
+  const userID = session?.user?.id!;
 
   const userRatePost = async ({ rating }: { rating: number }) => {
-    console.log({ id, rating });
+    setJustRated(true);
     setUserRated(rating);
     try {
       await fetch(`/api/recipe/${id}/rate`, {
@@ -31,11 +28,12 @@ export default function useRecipePageHooks() {
         }),
       });
     } catch (error) {
-      fetchRating()
       console.log(error);
+    } finally {
+      fetchRating({ id, session, setRating, setUserRated });
+      setTimeout(() => setJustRated(false), 2500);
     }
   };
-
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -43,8 +41,13 @@ export default function useRecipePageHooks() {
       const data = await response.json();
       setRecipe(data);
     };
-    fetchRating();
     fetchRecipe();
   }, [id]);
-  return { recipe, userRatePost, rating, userRated };
+
+  useEffect(() => {
+    if (!userID) return;
+    fetchRating({ id, session, setRating, setUserRated });
+  }, [userID]);
+
+  return { recipe, userRatePost, rating, userRated, justRated };
 }
