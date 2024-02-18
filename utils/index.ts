@@ -155,9 +155,8 @@ export const calculateAverageRating = (ratings: [number]) =>
 
 export const fetchRating = async (props: fetchRatingProps) => {
   const { id, session, setRating, setUserRated } = props;
-  const response = await fetch(
-    `/api/recipe/${id}/rate?userId=${session?.user?.id}`
-  );
+  const uid = session ? session?.user?.id : null;
+  const response = await fetch(`/api/recipe/${id}/rate?userId=${uid}`);
   const data = await response.json();
   setRating && setRating(Number(calculateAverageRating(data.rating)));
   setUserRated && setUserRated(data.userRate);

@@ -10,6 +10,7 @@ interface RatingItem {
 
 export const PATCH = async (req: Request, { params }: getProps) => {
   const { userId, rating } = await req.json();
+if(userId){
 
   try {
     await connectToDB();
@@ -31,6 +32,11 @@ export const PATCH = async (req: Request, { params }: getProps) => {
       status: 500,
     });
   }
+}else{
+  return new Response(`Failed to update recipe. No userId found`, {
+    status: 500,
+  });
+}
 };
 
 export const GET = async (req: Request, { params }: getProps) => {
@@ -44,17 +50,27 @@ export const GET = async (req: Request, { params }: getProps) => {
     if (!recipe) return new Response("Recipe not found", { status: 404 });
 
     const { rating } = recipe;
-    const userRate = rating.filter((rate: RatingItem) =>
-      rate.user.equals(userId)
-    );
+    if (userId !== "null") {
+      const userRate = rating.filter(
+        (rate: RatingItem) => rate.user && rate.user.equals(userId)
+      );
 
-    return new Response(
-      JSON.stringify({
-        userRate: userRate[0]?.rating,
-        rating: rating.map((item: RatingItem) => item.rating),
-      }),
-      { status: 200 }
-    );
+      return new Response(
+        JSON.stringify({
+          userRate: userRate[0]?.rating,
+          rating: rating.map((item: RatingItem) => item.rating),
+        }),
+        { status: 200 }
+      );
+    } else {
+      return new Response(
+        JSON.stringify({
+          userRate: 0,
+          rating: rating.map((item: RatingItem) => item.rating),
+        }),
+        { status: 200 }
+      );
+    }
   } catch (error) {
     return new Response(`Failed to fetch recipe. Error: ${error}`, {
       status: 500,

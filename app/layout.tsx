@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Footer, Navbar, Provider } from "@/Components";
 
+
 export const metadata: Metadata = {
   title: "Recipeio",
   description: "Find and share your recipes with people around world",

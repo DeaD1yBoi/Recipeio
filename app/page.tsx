@@ -1,9 +1,17 @@
 "use client";
-import { CustomButton, CustomFilter, Hero, RecipeCard, SearchBar, ShowMore } from "@/Components";
+import {
+  CustomButton,
+  Hero,
+  RecipeCard,
+  SearchBar,
+  ShowMore,
+} from "@/Components";
 import usePageHooks from "@/hooks";
 
+
 export default function Home() {
-  const { allRecipes, isDataEmpty, setFilter, handleClick, filter } = usePageHooks();
+  const { allRecipes, isDataEmpty, setFilter, handleClick, filter } =
+    usePageHooks();
   return (
     <main className="overflow-hidden">
       <Hero setFilter={setFilter} />
@@ -14,10 +22,7 @@ export default function Home() {
         </div>
         <div className="home__filters">
           <SearchBar setFilter={setFilter} />
-          <div className="home__filter-container">
-            {/* <CustomFilter title="ingredients" />
-            <CustomFilter title="tags" /> */}
-          </div>
+          <div className="home__filter-container"></div>
         </div>
         {!isDataEmpty ? (
           <section>
@@ -31,19 +36,21 @@ export default function Home() {
               ))}
             </div>
             <ShowMore
-            pageNumber={filter.limit / 8}
-            isNext={filter.limit > allRecipes?.length!}
-            setFilter={setFilter}
-            filter={filter}/>
+              pageNumber={filter.limit / 8}
+              isNext={filter.limit > allRecipes?.length!}
+              setFilter={setFilter}
+              filter={filter}
+            />
           </section>
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-2xl font-bold">No results found</h2>
             <p>Try different keywords</p>
             <CustomButton
-            title='Clear search params'
-            containerStyles='bg-primary-blue text-white rounded-full'
-            handleClick={handleClick}/>
+              title="Clear search params"
+              containerStyles="bg-primary-blue text-white rounded-full"
+              handleClick={handleClick}
+            />
           </div>
         )}
       </div>

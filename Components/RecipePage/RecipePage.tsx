@@ -6,7 +6,8 @@ import Link from "next/link";
 import { StarRating } from "..";
 
 const RecipePage = () => {
-  const { recipe, userRatePost, rating, userRated, justRated } = useRecipePageHooks();
+  const { recipe, userRatePost, rating, userRated, justRated, session } =
+    useRecipePageHooks();
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-5xl font-semibold mb-4">
@@ -40,11 +41,32 @@ const RecipePage = () => {
           </p>
         </div>
       </Link>
-        <div className="my-4">
-          <h1 className="font-semibold flex flex-row items-end">Rating of this recipe: <p className={` font-bold text-xl ${rating < 3 ? "text-red-500" : "text-green-500"}`}>{rating}</p></h1>
-          <h1 className="text-xl font-semibold">Rate this recipe</h1>
-          <StarRating justRated={justRated} userRated={userRated} rating={rating} userRatePost={userRatePost} size={25} textStyle="text-xl" ratingStyle="text-xl font-bold"/>
-        </div>
+      <div className="my-4">
+        <h1 className="font-semibold flex flex-row items-end">
+          Rating of this recipe:{" "}
+          <p
+            className={` font-bold text-xl ${
+              rating < 3 ? "text-red-500" : "text-green-500"
+            }`}
+          >
+            {rating}
+          </p>
+        </h1>
+        {session?.user && (
+          <div>
+            <h1 className="text-xl font-semibold">Rate this recipe</h1>
+            <StarRating
+              justRated={justRated}
+              userRated={userRated}
+              rating={rating}
+              userRatePost={userRatePost}
+              size={25}
+              textStyle="text-xl"
+              ratingStyle="text-xl font-bold"
+            />
+          </div>
+        )}
+      </div>
       <div className="mb-4">
         <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>
         <ul className="list-disc pl-4">
@@ -57,15 +79,14 @@ const RecipePage = () => {
       </div>
       <div className="mb-4 space-y-4">
         <h3 className="text-2xl font-semibold">Recipe Instructions:</h3>
-          {recipe?.recipeInst.map((instruction, index) => (
-            <div key={index}>
-              <span className="text-2xl">{`${index + 1}. `}</span>
+        {recipe?.recipeInst.map((instruction, index) => (
+          <div key={index}>
+            <span className="text-2xl">{`${index + 1}. `}</span>
             <span className="text-xl justify-evenly">
               {instruction || "Instruction Placeholder"}
             </span>
-            </div>
-           ))}
-
+          </div>
+        ))}
       </div>
       <div className="mb-4">
         <h3 className="text-2xl font-semibold mb-2">Tags:</h3>

@@ -1,5 +1,4 @@
 import { RecipePage } from "@/Components";
-import React from "react";
 
 const Recipe = () => {
   return (

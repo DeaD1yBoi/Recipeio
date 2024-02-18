@@ -19,7 +19,7 @@ const useRecipeCardHooks = (props: Props) => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    if (session) fetchRating({ id: recipe._id.toString(), session, setRating });
+    fetchRating({ id: recipe._id.toString(), session, setRating });
   }, [session?.user?.id]);
 
   const tagSearch = (tag: string) => {
@@ -63,6 +63,14 @@ const useRecipeCardHooks = (props: Props) => {
       console.log(error);
     }
   };
-  return { isOpen, setIsOpen, tagSearch, updateSavedRecipes, userSaved, rating };
+  return {
+    isOpen,
+    setIsOpen,
+    tagSearch,
+    updateSavedRecipes,
+    userSaved,
+    rating,
+    session,
+  };
 };
 export default useRecipeCardHooks;

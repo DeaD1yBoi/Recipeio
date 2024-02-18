@@ -6,6 +6,7 @@ import CustomButton from "../CustomButton/CustomButton";
 import { RatingStars, RecipeDetails } from "..";
 import useRecipeCardHooks from "./hooks";
 import { MdBookmark } from "react-icons/md";
+import { Suspense } from "react";
 
 interface RecipeCardProps {
   recipe: RecipeProps;
@@ -17,19 +18,39 @@ interface RecipeCardProps {
 const RecipeCard = (props: RecipeCardProps) => {
   const { recipe, handleDelete, handleEdit, setFilter } = props;
   const { name, ingredients, tags, image, timeNeeded, _id } = recipe;
-  const { isOpen, setIsOpen, tagSearch, updateSavedRecipes, userSaved, rating } = useRecipeCardHooks({
-    setFilter, recipe
+  const {
+    isOpen,
+    setIsOpen,
+    tagSearch,
+    updateSavedRecipes,
+    userSaved,
+    rating,
+    session,
+  } = useRecipeCardHooks({
+    setFilter,
+    recipe,
   });
 
   return (
     <div className="recipe-card group relative w-72 h-fit">
       <div className="recipe-card__content">
         <h2 className="recipe-card__content-title">{name}</h2>
-        {userSaved.includes(_id) ? (
-          <MdBookmark size={25} color='gold' className='cursor-pointer' onClick={()=>updateSavedRecipes(_id, 'DELETE')}/>
-        ):
-        <MdBookmark size={25} className='cursor-pointer' onClick={()=>updateSavedRecipes(_id, 'ADD')}/>
-        }
+        {session ? (
+          userSaved.includes(_id) ? (
+            <MdBookmark
+              size={25}
+              color="gold"
+              className="cursor-pointer"
+              onClick={() => updateSavedRecipes(_id, "DELETE")}
+            />
+          ) : (
+            <MdBookmark
+              size={25}
+              className="cursor-pointer"
+              onClick={() => updateSavedRecipes(_id, "ADD")}
+            />
+          )
+        ) : null}
       </div>
       <div className="relative h-fit w-full my-3 object-contain flex justify-center items-center rounded-md">
         <Image
@@ -42,8 +63,7 @@ const RecipeCard = (props: RecipeCardProps) => {
         />
       </div>
       <div className="py-2 border-t border-gray-400 w-full">
-
-      <RatingStars rating={rating}/>
+        <RatingStars rating={rating} />
       </div>
       <span className={`text-md flex flex-row items-center`}>
         This recipe takes:

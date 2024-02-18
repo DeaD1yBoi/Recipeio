@@ -45,9 +45,8 @@ export default function useRecipePageHooks() {
   }, [id]);
 
   useEffect(() => {
-    if (!userID) return;
     fetchRating({ id, session, setRating, setUserRated });
   }, [userID]);
 
-  return { recipe, userRatePost, rating, userRated, justRated };
+  return { recipe, userRatePost, rating, userRated, justRated, session };
 }
