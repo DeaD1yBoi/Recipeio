@@ -6,7 +6,6 @@ import CustomButton from "../CustomButton/CustomButton";
 import { RatingStars, RecipeDetails } from "..";
 import useRecipeCardHooks from "./hooks";
 import { MdBookmark } from "react-icons/md";
-import { Suspense } from "react";
 
 interface RecipeCardProps {
   recipe: RecipeProps;

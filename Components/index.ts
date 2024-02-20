@@ -16,6 +16,7 @@ import AutocompleteInputArray from "./AutocompleteInput/Array/AutocompleteInputA
 import AutocompleteInputString from "./AutocompleteInput/String/AutocompleteInputString";
 import StarRating from "./StarRating/StarRating";
 import RatingStars from "./RatingStars/RatingStars";
+import Loading from "./Loading/Loading";
 
 export { Hero,
     CustomButton,
@@ -34,5 +35,6 @@ export { Hero,
     AutocompleteInputArray,
     AutocompleteInputString,
     StarRating,
-    RatingStars
+    RatingStars,
+    Loading
 };

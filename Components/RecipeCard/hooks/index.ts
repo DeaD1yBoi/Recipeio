@@ -41,7 +41,9 @@ const useRecipeCardHooks = (props: Props) => {
   };
 
   useEffect(() => {
-    if (session) fetchSaved();
+    if (session) {
+      fetchSaved();
+    }
   }, [session]);
 
   const updateSavedRecipes = async (postId: ObjectId, action: string) => {

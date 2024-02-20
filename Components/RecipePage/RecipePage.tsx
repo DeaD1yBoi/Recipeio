@@ -3,12 +3,14 @@ import React from "react";
 import useRecipePageHooks from "./hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { StarRating } from "..";
+import { Loading, StarRating } from "..";
 
 const RecipePage = () => {
-  const { recipe, userRatePost, rating, userRated, justRated, session } =
+  const { recipe, userRatePost, rating, userRated, justRated, session, loading } =
     useRecipePageHooks();
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-5xl font-semibold mb-4">
         {recipe?.name || "Recipe Name Placeholder"}

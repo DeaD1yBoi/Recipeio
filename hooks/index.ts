@@ -9,6 +9,8 @@ export default function usePageHooks() {
   const initialFilter: FilterProps = { name: searchParams.get('name') || '', ingredients: searchParams.get('ingredients') || '', tag: searchParams.get('tag') || '', limit: limit };
   const [allRecipes, setAllRecipes] = useState<[RecipeProps] | null>(null);
   const [filter, setFilter] = useState<FilterProps>(initialFilter);
+  const [loading, setLoading] = useState(true);
+
 
   const router = useRouter();
 
@@ -20,6 +22,7 @@ export default function usePageHooks() {
 
   useEffect(() => {
     fetch();
+    setLoading(false)
   },[filter]);
 
   useEffect(() => {
@@ -49,5 +52,5 @@ const handleClick = () => {
 
   const isDataEmpty =
     !Array.isArray(allRecipes) || allRecipes.length < 1 || !allRecipes;
-  return { allRecipes, isDataEmpty, setFilter, handleClick, filter };
+  return { allRecipes, isDataEmpty, setFilter, handleClick, filter, loading };
 }

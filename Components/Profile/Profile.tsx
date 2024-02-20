@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import useProfileHooks from "./hooks";
-import { CustomButton, RecipeCard } from "..";
+import { CustomButton, Loading, RecipeCard } from "..";
 
 const Profile = () => {
   const {
@@ -13,6 +13,7 @@ const Profile = () => {
     createdRecipes,
     setCreatedRecipes,
     recipesToShow,
+    loading,
   } = useProfileHooks();
 
   return (
@@ -44,16 +45,20 @@ const Profile = () => {
         <p className="text-2xl">Recipes</p>
       </span>
       <div className="home__recipe-wrapper p-10">
-        {recipesToShow.map((recipe) => (
-          <RecipeCard
-            key={recipe._id.toString()}
-            recipe={recipe}
-            handleDelete={() =>
-              handleDelete && handleDelete(recipe._id.toString())
-            }
-            handleEdit={() => handleEdit && handleEdit(recipe._id.toString())}
-          />
-        ))}
+        {loading ? (
+          <Loading />
+        ) : (
+          recipesToShow.map((recipe) => (
+            <RecipeCard
+              key={recipe._id.toString()}
+              recipe={recipe}
+              handleDelete={() =>
+                handleDelete && handleDelete(recipe._id.toString())
+              }
+              handleEdit={() => handleEdit && handleEdit(recipe._id.toString())}
+            />
+          ))
+        )}
       </div>
     </section>
   );

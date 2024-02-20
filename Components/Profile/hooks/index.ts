@@ -12,6 +12,7 @@ const useProfileHooks = () => {
     useState<RecipeProps[]>(initialRecipes);
   const [userName, setUserName] = useState("");
   const [createdRecipes, setCreatedRecipes] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const userId = useSearchParams().get("id");
 
@@ -24,6 +25,7 @@ const useProfileHooks = () => {
       setUserName(data.username);
     };
     const fetchPosts = async () => {
+      setLoading(true)
       const url = userId
         ? `/api/users/${userId}/recipes`
         : `/api/users/${session?.user?.id}/recipes`;
@@ -32,6 +34,7 @@ const useProfileHooks = () => {
       createdRecipes
         ? setRecipesToShow(data.recipes)
         : setRecipesToShow(data.savedPosts);
+        setLoading(false)
     };
     if (userId) fetchUserName();
     if (session?.user?.id || userId) fetchPosts();
@@ -68,6 +71,7 @@ const useProfileHooks = () => {
     createdRecipes,
     setCreatedRecipes,
     recipesToShow,
+    loading,
   };
 };
 

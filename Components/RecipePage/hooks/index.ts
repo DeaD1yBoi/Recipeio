@@ -1,5 +1,5 @@
 import { ExtendedSession, RecipeProps } from "@/types";
-import { calculateAverageRating, fetchRating } from "@/utils";
+import { fetchRating } from "@/utils";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ export default function useRecipePageHooks() {
   const [rating, setRating] = useState<number>(0);
   const [userRated, setUserRated] = useState<number | null>(null);
   const [justRated, setJustRated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { data: session }: { data: ExtendedSession | null } = useSession();
 
@@ -42,11 +43,12 @@ export default function useRecipePageHooks() {
       setRecipe(data);
     };
     fetchRecipe();
+    setTimeout(() => setLoading(false), 650)
   }, [id]);
 
   useEffect(() => {
     fetchRating({ id, session, setRating, setUserRated });
   }, [userID]);
 
-  return { recipe, userRatePost, rating, userRated, justRated, session };
+  return { recipe, userRatePost, rating, userRated, justRated, session, loading };
 }

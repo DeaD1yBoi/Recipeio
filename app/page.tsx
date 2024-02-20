@@ -2,6 +2,7 @@
 import {
   CustomButton,
   Hero,
+  Loading,
   RecipeCard,
   SearchBar,
   ShowMore,
@@ -10,7 +11,7 @@ import usePageHooks from "@/hooks";
 
 
 export default function Home() {
-  const { allRecipes, isDataEmpty, setFilter, handleClick, filter } =
+  const { allRecipes, isDataEmpty, setFilter, handleClick, filter, loading } =
     usePageHooks();
   return (
     <main className="overflow-hidden">
@@ -24,7 +25,7 @@ export default function Home() {
           <SearchBar setFilter={setFilter} />
           <div className="home__filter-container"></div>
         </div>
-        {!isDataEmpty ? (
+        {loading ? <Loading /> : !isDataEmpty ? (
           <section>
             <div className="home__recipe-wrapper">
               {allRecipes?.map((recipe) => (
