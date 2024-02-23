@@ -161,3 +161,8 @@ export const fetchRating = async (props: fetchRatingProps) => {
   setRating && setRating(Number(calculateAverageRating(data.rating)));
   setUserRated && setUserRated(data.userRate);
 };
+
+export const shortener = (value: string, length: number) =>
+value.length > length
+  ? `${value.slice(0, length)}...`
+  : value;

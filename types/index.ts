@@ -22,7 +22,7 @@ export interface SearchNameProps {
 export interface UseStatePostProps {
   post: {
     nameStr: string;
-    ingredients: Array<string>;
+    ingredients: {name: string, amount: string}[];
     recipeInst: Array<string>;
     tags: Array<string>;
     timeNeeded: number;
@@ -31,7 +31,7 @@ export interface UseStatePostProps {
   setPost: Dispatch<
     SetStateAction<{
       nameStr: string;
-      ingredients: Array<string>;
+      ingredients: {name: string, amount: string}[];
       recipeInst: Array<string>;
       tags: Array<string>;
       timeNeeded: number;

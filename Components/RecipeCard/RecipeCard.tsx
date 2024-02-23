@@ -6,6 +6,7 @@ import CustomButton from "../CustomButton/CustomButton";
 import { RatingStars, RecipeDetails } from "..";
 import useRecipeCardHooks from "./hooks";
 import { MdBookmark } from "react-icons/md";
+import { shortener } from "@/utils";
 
 interface RecipeCardProps {
   recipe: RecipeProps;
@@ -33,24 +34,25 @@ const RecipeCard = (props: RecipeCardProps) => {
   return (
     <div className="recipe-card group relative w-72 h-fit">
       <div className="recipe-card__content">
-        <h2 className="recipe-card__content-title">{name}</h2>
+        <h2 className="recipe-card__content-title overflow-hidden text-ellipsis">{name}</h2>
         {session ? (
           userSaved.includes(_id) ? (
             <MdBookmark
               size={25}
               color="gold"
-              className="cursor-pointer"
+              className="cursor-pointer min-w-[25px]"
               onClick={() => updateSavedRecipes(_id, "DELETE")}
             />
           ) : (
             <MdBookmark
               size={25}
-              className="cursor-pointer"
+              className="cursor-pointer min-w-[25px]"
               onClick={() => updateSavedRecipes(_id, "ADD")}
             />
           )
         ) : null}
       </div>
+
       <div className="relative h-fit w-full my-3 object-contain flex justify-center items-center rounded-md">
         <Image
           src={image || "/placeholder.png"}
@@ -61,9 +63,11 @@ const RecipeCard = (props: RecipeCardProps) => {
           className="object-contain rounded-lg"
         />
       </div>
+
       <div className="py-2 border-t border-gray-400 w-full">
         <RatingStars rating={rating} />
       </div>
+
       <span className={`text-md flex flex-row items-center`}>
         This recipe takes:
         <p
@@ -85,25 +89,25 @@ const RecipeCard = (props: RecipeCardProps) => {
         </p>
         min.
       </span>
+
       <div className="flex font-extrabold flex-col">
         <span className="self-start text-[14px] font-semibold mb-4">
           {ingredients.slice(0, 3).map((ingredient, index) => (
-            <p className="mr-1" key={index}>
+            <p className="mr-1 overflow-hidden text-ellipsis" key={index}>
               &bull;
-              {ingredient.length > 40
-                ? `${ingredient.slice(0, 40)}...`
-                : ingredient}
+              {shortener(ingredient, 40)}
             </p>
           ))}
         </span>
+
         <span className="self-start text-sm font-medium text-blue-700 flex flex-wrap">
-          {tags.slice(0, 3).map((tag, index) => (
+          {tags.slice(0, 3).map((tag: string, index) => (
             <p
-              className="cursor-pointer mr-1"
+              className="cursor-pointer mr-1 max-w-[100px] overflow-hidden text-ellipsis"
               onClick={() => tagSearch(tag)}
               key={index}
             >
-              {tag.length > 11 ? `${tag.slice(0, 11)}...` : tag}
+              {shortener(tag, 11)}
             </p>
           ))}
         </span>

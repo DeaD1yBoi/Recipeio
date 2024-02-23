@@ -13,7 +13,7 @@ const CreateRecipe = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     nameStr: "",
-    ingredients: [] as string[],
+    ingredients: [] as { name: string; amount: string; }[],
     recipeInst: [] as string[],
     tags: [] as string[],
     timeNeeded: 30,

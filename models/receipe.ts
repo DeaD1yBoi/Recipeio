@@ -9,13 +9,18 @@ const RecipeSchema = new Schema({
     type: String,
     required: [true, "You must give it a name"],
   },
-  ingredients: {
+  ingredients: [
+    {name:{
     type: [String],
     required: [
       true,
       "You must write all ingredients that you use in your receipe",
     ],
-  },
+  }, amount:{
+    type: [String],
+    required: [true, "You must write the amount of each ingredient"],
+  }},
+],
   recipeInst: {
     type: [String],
     required: [true, "You must describe the cooking process"],
