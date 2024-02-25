@@ -6,8 +6,15 @@ import Link from "next/link";
 import { Loading, StarRating } from "..";
 
 const RecipePage = () => {
-  const { recipe, userRatePost, rating, userRated, justRated, session, loading } =
-    useRecipePageHooks();
+  const {
+    recipe,
+    userRatePost,
+    rating,
+    userRated,
+    justRated,
+    session,
+    loading,
+  } = useRecipePageHooks();
   return loading ? (
     <Loading />
   ) : (
@@ -71,13 +78,12 @@ const RecipePage = () => {
       </div>
       <div className="mb-4">
         <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>
-        <ul className="list-disc pl-4">
           {recipe?.ingredients.map((ingredient, index) => (
-            <li key={index} className="mb-1 text-xl font-semibold">
-              {ingredient || "Ingredient Placeholder"}
+            <li key={index} className="mb-1 text-xl font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12">
+              <p>&bull; {ingredient.name || "Ingredient Placeholder"}</p>
+              <p>{ingredient.amount || "Amount Placeholder"}</p>
             </li>
           ))}
-        </ul>
       </div>
       <div className="mb-4 space-y-4">
         <h3 className="text-2xl font-semibold">Recipe Instructions:</h3>

@@ -32,12 +32,29 @@ const useSearchBarHooks = (props: Props) => {
     });
   };
 
+  const clearSearch = () => {
+    setSearchName("");
+    setIngredients([]);
+    router.push("/");
+    updateSearchParams({
+      name: "",
+      ing: "",
+      setFilter,
+      setIngredients,
+      setSearchName,
+      router,
+      tag: "",
+      limit: 8,
+    })
+  }
+
   return {
     searchName,
     setSearchName,
     handleSearch,
     ingredients,
     setIngredients,
+    clearSearch
   };
 };
 

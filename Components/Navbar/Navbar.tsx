@@ -9,7 +9,7 @@ const Navbar = () => {
   const { session, providers, toggleDropdown, setToggleDropdown } =
     useNavbarHooks();
   return (
-    <nav className="flex-between w-full mb-16 pt-3 px-5">
+    <nav className="flex-between w-full mb-16 pt-3 px-5 z-10">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src="/food-logo.svg"

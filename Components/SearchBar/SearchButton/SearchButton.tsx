@@ -3,8 +3,8 @@ import { FaSearch } from "react-icons/fa";
 
 const SearchButton = ({ btnClasses }: { btnClasses: string }) => {
   return (
-    <button type="submit" className={`z-10 ${btnClasses}`}>
-      <FaSearch className="cursor-pointer" />
+    <button type="submit" className={`${btnClasses}`}>
+      <FaSearch className="cursor-pointer" size={20} />
     </button>
   );
 };

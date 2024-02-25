@@ -5,12 +5,19 @@ import Image from "next/image";
 import Link from "next/link";
 import useRecipeDetailsHooks from "./hooks";
 import { RecipeDetailsProps } from "@/types";
-import { timeTextColor } from "@/utils";
+import { shortener, timeTextColor } from "@/utils";
 import RatingStars from "@/Components/RatingStars/RatingStars";
 
 const RecipeDetails = (props: RecipeDetailsProps) => {
-  const { isOpen, tagSearch, closeModal, recipe, handleEdit, handleDelete, rating } =
-    props;
+  const {
+    isOpen,
+    tagSearch,
+    closeModal,
+    recipe,
+    handleEdit,
+    handleDelete,
+    rating,
+  } = props;
   const { pathName, session } = useRecipeDetailsHooks();
   return (
     <>
@@ -57,7 +64,7 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     />
                   </button>
                   <div className="flex-1 flex flex-col gap-3 ">
-                    <h2 className="font-semibold text-xl capitalize">
+                    <h2 className="font-semibold text-xl capitalize border-b pb-1 border-gray-400">
                       {recipe.name}
                     </h2>
                     <div className="relative w-full rounded-lg ">
@@ -72,7 +79,7 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     </div>
                   </div>
                   <div className="pt-2 items-end border-t w-full border-gray-400">
-                  <RatingStars rating={rating} size={30} />
+                    <RatingStars rating={rating} size={30} />
                   </div>
                   <span className={`text-md flex flex-row items-center`}>
                     This recipe takes:
@@ -89,12 +96,16 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     <h3 className="font-semibold">Ingredients:</h3>
                     <div className={"grid grid-cols-1"}>
                       {recipe.ingredients.map((ingredient, index) => (
-                        <p key={index} className="text-sm flex font-semibold">
-                          &bull;
-                          {ingredient.length > 45
-                            ? `${ingredient.slice(0, 45)}...`
-                            : ingredient}
-                        </p>
+                        <span
+                          key={index}
+                          className="text-sm font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12"
+                        >
+                          <p>
+                            &bull;
+                            {shortener(ingredient.name, 45)}
+                          </p>
+                          <p>{ingredient.amount}</p>
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -105,7 +116,10 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     <Link href={`/profile?id=${recipe.creator._id}`}>
                       <div className="bg-gray-200 cursor-pointer p-2 rounded-lg flex flex-row">
                         <Image
-                          src={recipe.creator.image || 'https://via.placeholder.com/40'}
+                          src={
+                            recipe.creator.image ||
+                            "https://via.placeholder.com/40"
+                          }
                           alt="user_image"
                           width={40}
                           height={40}

@@ -15,7 +15,7 @@ export default function Home() {
     usePageHooks();
   return (
     <main className="overflow-hidden">
-      <Hero setFilter={setFilter} />
+      <Hero/>
       <div className="mt-6 px-8 flex flex-wrap" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Recipe Catalogue</h1>

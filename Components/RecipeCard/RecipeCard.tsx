@@ -95,7 +95,7 @@ const RecipeCard = (props: RecipeCardProps) => {
           {ingredients.slice(0, 3).map((ingredient, index) => (
             <p className="mr-1 overflow-hidden text-ellipsis" key={index}>
               &bull;
-              {shortener(ingredient, 40)}
+              {shortener(ingredient.name, 40)}
             </p>
           ))}
         </span>

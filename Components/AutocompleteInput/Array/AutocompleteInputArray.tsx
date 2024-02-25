@@ -15,27 +15,26 @@ export default function AutocompleteInputArray(props: Props) {
     props;
   return (
     <div>
-      <Stack spacing={3} sx={{ width: 350 }}>
-        <Autocomplete
-          value={variable}
-          onChange={(e, newValue) => {
-            setVariable(newValue);
-          }}
-          multiple
-          limitTags={2}
-          id={`${autocompleteId}`}
-          options={constArr}
-          getOptionLabel={(option: string) => option}
-          defaultValue={[constArr[1]]}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="standard"
-              placeholder={`${placeholder}`}
-            />
-          )}
-        />
-      </Stack>
+      <Autocomplete
+      className="w-[250px]"
+        value={variable}
+        onChange={(e, newValue) => {
+          setVariable(newValue);
+        }}
+        multiple
+        limitTags={2}
+        id={`${autocompleteId}`}
+        options={constArr}
+        getOptionLabel={(option: string) => option}
+        defaultValue={[constArr[1]]}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="standard"
+            placeholder={`${placeholder}`}
+          />
+        )}
+      />
     </div>
   );
 }

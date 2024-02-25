@@ -62,7 +62,7 @@ export interface ProfileProps {
 export interface RecipeProps {
   _id: ObjectId;
   name: string;
-  ingredients: Array<string>;
+  ingredients: { name: string; amount: string }[];
   recipeInst: Array<string>;
   tags: Array<string>;
   image: string;
