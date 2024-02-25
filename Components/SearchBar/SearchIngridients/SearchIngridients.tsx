@@ -9,7 +9,6 @@ interface Props {
 const SearchIngridients = (props: Props) => {
   const { ingredients, setIngredients } = props;
   return (
-    <div className="searchbar__item">
       <AutocompleteInputArray
         variable={ingredients}
         setVariable={setIngredients}
@@ -17,7 +16,6 @@ const SearchIngridients = (props: Props) => {
         placeholder="Ingredients"
         autocompleteId="ingredients"
       />
-    </div>
   );
 };
 

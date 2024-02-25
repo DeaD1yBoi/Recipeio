@@ -185,7 +185,7 @@
 
 /* START: searchbar styles */
 .searchbar {
-  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+  @apply flex items-start justify-start max-sm:flex-col w-full max-sm:gap-4 max-sm:items-center;
 }
 
 .searchbar__item {
@@ -193,7 +193,7 @@
 }
 
 .searchbar__input {
-  @apply w-full h-[24px] outline-none cursor-pointer border-b border-gray-400 hover:border-black hover:border-b-2 transition-all duration-100 focus:border-blue-600 focus:border-b-2;
+  @apply h-[24px] outline-none cursor-pointer border-b border-gray-400 hover:border-black hover:border-b-2 transition-all duration-100 focus:border-blue-600 focus:border-b-2;
 }
 /* END: searchbar styles */
 
