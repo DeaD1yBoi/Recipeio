@@ -3,9 +3,10 @@ import User from "@/models/user";
 import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
 import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 
 
-export const GET = async (req: NextApiRequest,  {params} : getProps) => {
+export const GET = async (req: NextRequest,  {params} : getProps) => {
   try {
     await connectToDB();
     const recipe = await Recipe.findById(params.id).populate("creator");
