@@ -7,7 +7,7 @@ const useUpdateRecipeHooks = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     nameStr: "",
-    ingredients: [""],
+    ingredients:  [{ name: "", amount: "" }],
     recipeInst: [""],
     tags: [""],
     timeNeeded: 30,

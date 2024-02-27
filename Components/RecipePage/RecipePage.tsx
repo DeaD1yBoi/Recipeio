@@ -18,8 +18,8 @@ const RecipePage = () => {
   return loading ? (
     <Loading />
   ) : (
-    <div className="max-w-5xl mx-auto">
-      <h1 className="text-5xl font-semibold mb-4">
+    <div className="mx-auto max-sm:w-full items-center justify-center">
+      <h1 className="text-5xl font-semibold mb-4 max-sm:text-2xl overflow-hidden text-ellipsis">
         {recipe?.name || "Recipe Name Placeholder"}
       </h1>
       <Image
@@ -77,13 +77,19 @@ const RecipePage = () => {
         )}
       </div>
       <div className="mb-4">
-        <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>
-          {recipe?.ingredients.map((ingredient, index) => (
-            <li key={index} className="mb-1 text-xl font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12">
-              <p>&bull; {ingredient.name || "Ingredient Placeholder"}</p>
-              <p>{ingredient.amount || "Amount Placeholder"}</p>
-            </li>
-          ))}
+        <div className="font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12">
+          <h3 className="text-2xl font-bold mb-2">Ingredients:</h3>
+          <h3 className="text-2xl font-semibold">Amount:</h3>
+        </div>
+        {recipe?.ingredients.map((ingredient, index) => (
+          <li
+            key={index}
+            className="mb-1 text-xl font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12"
+          >
+            <p>&bull; {ingredient.name || "Ingredient Placeholder"}</p>
+            <p>{ingredient.amount || "Amount Placeholder"}</p>
+          </li>
+        ))}
       </div>
       <div className="mb-4 space-y-4">
         <h3 className="text-2xl font-semibold">Recipe Instructions:</h3>

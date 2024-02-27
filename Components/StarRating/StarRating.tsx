@@ -31,6 +31,7 @@ const StarRating = (props: Props) => {
               onClick={() => userRatePost({ rating: currentRating })}
             />
             <FaStar
+            className="max-sm:w-[70px] max-sm:h-[70px]"
               size={size}
               color={color(currentRating)}
               onMouseEnter={() => setHover(currentRating)}

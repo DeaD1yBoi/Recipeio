@@ -93,7 +93,11 @@ const RecipeDetails = (props: RecipeDetailsProps) => {
                     min.
                   </span>
                   <div className="flex-1 flex flex-col gap-2">
+                    <div className="font-semibold grid grid-cols-2 border-b border-gray-400 w-10/12">
+
                     <h3 className="font-semibold">Ingredients:</h3>
+                    <h3 className="font-semibold">amount:</h3>
+                    </div>
                     <div className={"grid grid-cols-1"}>
                       {recipe.ingredients.map((ingredient, index) => (
                         <span

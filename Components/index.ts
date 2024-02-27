@@ -17,24 +17,31 @@ import AutocompleteInputString from "./AutocompleteInput/String/AutocompleteInpu
 import StarRating from "./StarRating/StarRating";
 import RatingStars from "./RatingStars/RatingStars";
 import Loading from "./Loading/Loading";
+import HomeComponent from "./Home/Home";
+import EditRecipeComponent from "./EditRecipe/EditRecipe";
+import CreateRecipeComponent from "./CreateRecipe/CreateRecipe";
 
-export { Hero,
-    CustomButton,
-    Footer,
-    Navbar,
-    SearchBar,
-    CustomFilter,
-    Form,
-    RecipeCard,
-    Provider,
-    RecipeDetails,
-    Profile,
-    RecipePage,
-    InputSlider,
-    ShowMore,
-    AutocompleteInputArray,
-    AutocompleteInputString,
-    StarRating,
-    RatingStars,
-    Loading
+export {
+  Hero,
+  CustomButton,
+  Footer,
+  Navbar,
+  SearchBar,
+  CustomFilter,
+  Form,
+  RecipeCard,
+  Provider,
+  RecipeDetails,
+  Profile,
+  RecipePage,
+  InputSlider,
+  ShowMore,
+  AutocompleteInputArray,
+  AutocompleteInputString,
+  StarRating,
+  RatingStars,
+  Loading,
+  HomeComponent,
+  EditRecipeComponent,
+  CreateRecipeComponent,
 };
