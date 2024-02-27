@@ -9,13 +9,13 @@ interface Props {
 const SearchIngridients = (props: Props) => {
   const { ingredients, setIngredients } = props;
   return (
-      <AutocompleteInputArray
-        variable={ingredients}
-        setVariable={setIngredients}
-        constArr={AllPossibleIngredients}
-        placeholder="Ingredients"
-        autocompleteId="ingredients"
-      />
+    <AutocompleteInputArray
+      variable={ingredients}
+      setVariable={setIngredients}
+      constArr={AllPossibleIngredients}
+      placeholder="Ingredients"
+      autocompleteId="ingredients"
+    />
   );
 };
 

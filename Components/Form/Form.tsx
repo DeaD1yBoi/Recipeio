@@ -8,7 +8,10 @@ import Link from "next/link";
 
 const Form = (props: FormProps) => {
   const { type, post, setPost, submitting, handleSubmit } = props;
-  const { handleAddName, onFileChange, onClick } = useFormHooks({post, setPost});
+  const { handleAddName, onFileChange, onClick } = useFormHooks({
+    post,
+    setPost,
+  });
   return (
     <section className="w-full flex-center flex-col">
       <h1 className="head_text text-left">
@@ -18,7 +21,7 @@ const Form = (props: FormProps) => {
         {type} & share amazing recepies with the world.
       </p>
       <form
-      method="POST" encType="multipart/form-data"
+        method="POST"
         onSubmit={handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
@@ -34,14 +37,14 @@ const Form = (props: FormProps) => {
         </label>
         <label>
           <span className="font-semibold text-base text-grey-700">Image:</span>
-          <p className="text-sm text-neutral-600">Upload the final image of your recipe done</p>
+          <p className="text-sm text-neutral-600">
+            Upload the final image of your recipe done
+          </p>
           <input
-          type="file"
-          accept='image/*'
-          name='image'
-            onChange={
-              onFileChange
-            }
+            type="file"
+            accept="image/*"
+            name="image"
+            onChange={onFileChange}
             onClick={onClick}
             required
             className="form_input"
@@ -75,10 +78,8 @@ const Form = (props: FormProps) => {
           />
         </label>
         <label>
-          <span className="font-semibold text-base text-grey-700">
-          Tag
-          </span>
-             <p className="text-sm text-neutral-600">(#vegan, #sweet, #quick)</p>
+          <span className="font-semibold text-base text-grey-700">Tag</span>
+          <p className="text-sm text-neutral-600">(#vegan, #sweet, #quick)</p>
           <TodoComp
             placeholder="Enter tags"
             setPost={setPost}

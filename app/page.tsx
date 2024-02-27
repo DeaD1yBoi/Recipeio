@@ -26,7 +26,7 @@ export default function Home() {
           <div className="home__filter-container"></div>
         </div>
         {loading ? <Loading /> : !isDataEmpty ? (
-          <section>
+          <section >
             <div className="home__recipe-wrapper">
               {allRecipes?.map((recipe) => (
                 <RecipeCard
@@ -44,7 +44,7 @@ export default function Home() {
             />
           </section>
         ) : (
-          <div className="home__error-container">
+          <div className="home__error-container w-full">
             <h2 className="text-black text-2xl font-bold">No results found</h2>
             <p>Try different keywords</p>
             <CustomButton

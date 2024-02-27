@@ -15,7 +15,7 @@ export default function AutocompleteInputArray(props: Props) {
   return (
     <div>
       <Autocomplete
-      className="w-[325px]"
+        className="w-[325px]"
         value={variable}
         onChange={(e, newValue) => {
           setVariable(newValue);
