@@ -2,7 +2,6 @@ import Recipe from "@/models/receipe";
 import User from "@/models/user";
 import { getProps } from "@/types";
 import { connectToDB } from "@/utils/database";
-import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
 
 

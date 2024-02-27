@@ -1,8 +1,8 @@
 import Recipe from "@/models/receipe";
 import { connectToDB } from "@/utils/database";
-import { NextApiRequest } from "next";
+import { NextRequest } from "next/server";
 
-export const GET = async (req: NextApiRequest) => {
+export const GET = async (req: NextRequest) => {
   const { searchParams } = new URL(req.url!);
   const name = searchParams.get("name");
   const ingredients = searchParams.get("ingredients");
